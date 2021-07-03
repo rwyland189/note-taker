@@ -15,6 +15,11 @@ app.get('/api/db', (req, res) => {
     res.json(db);
 });
 
+// route to serve index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
 // chain listen() method onto our server
 app.listen(PORT, () => {
     console.log(`API server on ${PORT}`);
