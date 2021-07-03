@@ -23,9 +23,18 @@ const { db } = require('./db/db');
 app.use(express.static('public'));
 
 // function that returns single note object
-function findById(id, dbArray) {
-    const result = dbArray.filter(note => note.id === id)[0];
+function findById(id, noteArray) {
+    const result = noteArray.filter(note => note.id === id)[0];
     return result;
+}
+
+// create a new note functionality
+function createNewNote(body, noteArray) {
+    const note = body;
+
+    noteArray.push(note);
+    
+    return note;
 }
 
 // add route to view db json data
@@ -55,8 +64,11 @@ app.get('/notes', (req, res) => {
 
 // create route on server that accepts data to be used or stored server-side
 app.post('/api/notes', (req, res) => {
-    // req.body is where incoming content will be
-    res.json(req.body);
+    req.body.id = notes.length.toString();
+
+    const note = createNewNote(req.body, notes);
+
+    res.json(note);
 });
 
 // chain listen() method onto our server
