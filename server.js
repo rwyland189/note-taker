@@ -42,6 +42,11 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
+// route to serve notes.html
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/notes.html'));
+});
+
 // create route on server that accepts data to be used or stored server-side
 app.post('/api/db', (req, res) => {
     // req.body is where incoming content will be
