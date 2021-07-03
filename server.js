@@ -10,6 +10,12 @@ const path = require('path');
 // instantiate the server
 const app = express();
 
+// parse incoming string or array data
+app.use(express.urlencoded({ extended: true }));
+
+// parse incoming json data
+app.use(express.json());
+
 // create a route that front-end can request data from
 const { db } = require('./db/db');
 
@@ -23,12 +29,12 @@ function findById(id, dbArray) {
 }
 
 // add route to view db json data
-app.get('/api/db', (req, res) => {
+app.get('/api/notes', (req, res) => {
     res.json(db);
 });
 
 // get specific note
-app.get('/api/animals/:id', (req, res) => {
+app.get('/api/notes/:id', (req, res) => {
     const result = findById(req.params.id, db);
     if (result) {
         res.json(result);
@@ -37,7 +43,7 @@ app.get('/api/animals/:id', (req, res) => {
     }
 });
 
-// route to serve index.html
+// routes to serve index.html, can't get * to work (doesn't go to notes.html once get started btn is clicked)
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
@@ -48,7 +54,7 @@ app.get('/notes', (req, res) => {
 });
 
 // create route on server that accepts data to be used or stored server-side
-app.post('/api/db', (req, res) => {
+app.post('/api/notes', (req, res) => {
     // req.body is where incoming content will be
     res.json(req.body);
 });
