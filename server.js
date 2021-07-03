@@ -4,6 +4,9 @@ const express = require('express');
 // use heroku port or default
 const PORT = process.env.PORT || 3001;
 
+// import and use fs library to write data to db.json
+const fs = require('fs');
+
 // require path
 const path = require('path');
 
@@ -31,9 +34,11 @@ function findById(id, noteArray) {
 // create a new note functionality
 function createNewNote(body, noteArray) {
     const note = body;
-
     noteArray.push(note);
-    
+    fs.writeFileSync(
+        path.join(__dirname, './db/db.json'),
+        JSON.stringify({ notes: noteArray }, null, 2)
+    );
     return note;
 }
 
