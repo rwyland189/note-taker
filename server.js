@@ -13,9 +13,28 @@ const app = express();
 // create a route that front-end can request data from
 const { db } = require('./db/db');
 
+// instruct server to make certain files readily available
+app.use(express.static('public'));
+
+// function that returns single note object
+function findById(id, dbArray) {
+    const result = dbArray.filter(note => note.id === id)[0];
+    return result;
+}
+
 // add route to view db json data
 app.get('/api/db', (req, res) => {
     res.json(db);
+});
+
+// get specific note
+app.get('/api/animals/:id', (req, res) => {
+    const result = findById(req.params.id, db);
+    if (result) {
+        res.json(result);
+    } else {
+        res.send(404);
+    }
 });
 
 // route to serve index.html
