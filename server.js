@@ -42,6 +42,12 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
+// create route on server that accepts data to be used or stored server-side
+app.post('/api/db', (req, res) => {
+    // req.body is where incoming content will be
+    res.json(req.body);
+});
+
 // chain listen() method onto our server
 app.listen(PORT, () => {
     console.log(`API server on ${PORT}`);
