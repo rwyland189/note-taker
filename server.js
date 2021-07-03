@@ -4,6 +4,9 @@ const express = require('express');
 // use heroku port or default
 const PORT = process.env.PORT || 3001;
 
+// require path
+const path = require('path');
+
 // instantiate the server
 const app = express();
 
