@@ -1,6 +1,9 @@
 // require express
 const express = require('express');
 
+// use heroku port or default
+const PORT = process.env.PORT || 3001;
+
 // instantiate the server
 const app = express();
 
@@ -13,6 +16,6 @@ app.get('/api/db', (req, res) => {
 });
 
 // chain listen() method onto our server
-app.listen(3001, () => {
-    console.log('API server on port 3001');
+app.listen(PORT, () => {
+    console.log(`API server on ${PORT}`);
 });
