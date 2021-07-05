@@ -6,9 +6,8 @@
   * [Tests](#tests)
   * [Questions](#Questions)
  
-   ## Walkthrough Video
-   ### Link
-  https://drive.google.com/file/d/1UWDcuPWUSbqm34mNWcGSgAmk7PxSdo6J/view
+   ## Deployed App
+  https://damp-forest-44087.herokuapp.com/
 
   ## Description
   An application that can create and save notes using Express.js. Note data will be saved and retrieved from a JSON file.
