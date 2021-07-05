@@ -69,7 +69,7 @@ app.get('/notes', (req, res) => {
 
 // create route on server that accepts data to be used or stored server-side
 app.post('/api/notes', (req, res) => {
-    req.body.id = notes.length.toString();
+    req.body.id = notes.length.toString(); // issue with note here
 
     const note = createNewNote(req.body, notes);
 
@@ -80,3 +80,5 @@ app.post('/api/notes', (req, res) => {
 app.listen(PORT, () => {
     console.log(`API server on ${PORT}`);
 });
+
+//left off on 11.3.5, issues with note on js line 72
